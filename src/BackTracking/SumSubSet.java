@@ -1,63 +1,65 @@
 import java.util.*;
 
-// Assume all the numbers in the array is positive and unique!
-
 class SumSubSet {
 	int[] nums;
 	int target;
-	boolean res;
-	int count;
-	int max;
+	List<List<Integer>> res;
 
-	SumSubSet(int[] arr) {
-		this.nums = arr;
-		res = false;
-		count = 0;
-		for (int i : arr) {
-			max += i;
-		}
-	}
-
-	void setTarget(int n) {
-		this.target = n;
-		count = 0;
+	SumSubSet(int[] nums, int target) {
+		this.nums = nums;
+		//test if sorting helps
+		//Arrays.sort(this.nums);
+		this.target = target;
+		res = new ArrayList<>();
 	}
 
 	void solve() {
-		if (target == max) {res = true;} 
-		else if (target > max) {res = false;}
-		else {res = solve(0);}
-		if (res) Jren.p("Yes for target: " + target + " count: " + count);
-		else Jren.p("No for target: " + target + " count: " + count);
+		Deque<Integer> curSol = new ArrayDeque<>();
+		solve(0, 0, curSol);
 	}
 
-	boolean solve(int curSum) {
-		count++;
-		if (curSum == target) return true;
-		if (curSum > target) return false;
-		else {
-			for (int i = 0; i < nums.length; i++) {
-				if (nums[i] != -1) {
-					int cur = nums[i];
-					nums[i] = -1;
-					if (solve(curSum + cur)) {nums[i] = cur; return true;}
-					nums[i] = cur;
-				}
-			}
-			return false;
+	void solve(int curSum, int curIndex, Deque<Integer> curSol) {
+		if (curIndex == nums.length) {return;}
+		if (curSum > target) {return;}
+		else if (curSum == target) {
+			res.add(new ArrayList<Integer>(curSol));
+		} else {
+			curSol.addLast(nums[curIndex]);
+			solve(curSum + nums[curIndex], curIndex + 1, curSol);
+			curSol.removeLast();
+			solve(curSum, curIndex + 1, curSol);
 		}
 	}
 
-
+	void print(){
+		if (res.size() == 0) {Jren.p("no solution");}
+		else {
+			Jren.p("there are total of " + res.size() + " solutions: ");
+			for (List<Integer> l : res) {
+				System.out.println(l.toString());
+			}
+		}
+	}
 
 
 	public static void main(String[] args) {
-		int[] nums = new int[]{2,2,2,2,2,2,2,2,2,2,2};
-		//int target = args.length == 0 ? 7 : Integer.parseInt(args[0]);
-		SumSubSet sss = new SumSubSet(nums);
-		for (int i = 1; i < 30; i++) {
-			sss.setTarget(i);
-			sss.solve();
-		}
+		int[] testNums = new int[]{1,2,3,4,5,6,7,8,9,11,12,13,14,15,16,17};
+		int target = 12;
+
+		long start = System.nanoTime();
+		SumSubSet sss = new SumSubSet(testNums, target);
+		sss.solve();
+		sss.print();
+		long end = System.nanoTime();
+		Jren.p("time without sorting: " + (end - start) / 10000);
+		Jren.p();
+
+		Arrays.sort(testNums);
+		start = System.nanoTime();
+		SumSubSet sss2 = new SumSubSet(testNums, target);
+		sss2.solve();
+		sss2.print();
+		end = System.nanoTime();
+		Jren.p("time with sorting: " + (end - start) / 10000);
 	}
 }
