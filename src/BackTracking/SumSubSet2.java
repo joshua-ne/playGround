@@ -1,11 +1,11 @@
 import java.util.*;
 
-class SumSubSet {
+class SumSubSet2 {
 	int[] nums;
 	int target;
 	List<List<Integer>> res;
 
-	SumSubSet(int[] nums, int target) {
+	SumSubSet2(int[] nums, int target) {
 		this.nums = nums;
 		//test if sorting helps
 		//Arrays.sort(this.nums);
@@ -24,9 +24,11 @@ class SumSubSet {
 		else if (curSum == target) {
 			res.add(new ArrayList<Integer>(curSol));
 		} else {
-			curSol.addLast(nums[curIndex]);
-			solve(curSum + nums[curIndex], curIndex + 1, curSol);
-			curSol.removeLast();
+			if (curSum + nums[curIndex] <= target) {
+				curSol.addLast(nums[curIndex]);
+				solve(curSum + nums[curIndex], curIndex + 1, curSol);
+				curSol.removeLast();
+			}
 			solve(curSum, curIndex + 1, curSol);
 		}
 	}
@@ -47,7 +49,7 @@ class SumSubSet {
 		int target = 23;
 
 		long start = System.nanoTime();
-		SumSubSet sss = new SumSubSet(testNums, target);
+		SumSubSet2 sss = new SumSubSet2(testNums, target);
 		sss.solve();
 		sss.print();
 		long end = System.nanoTime();
@@ -56,7 +58,7 @@ class SumSubSet {
 
 		Arrays.sort(testNums);
 		start = System.nanoTime();
-		SumSubSet sss2 = new SumSubSet(testNums, target);
+		SumSubSet2 sss2 = new SumSubSet2(testNums, target);
 		sss2.solve();
 		sss2.print();
 		end = System.nanoTime();
