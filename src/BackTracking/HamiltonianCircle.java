@@ -11,13 +11,14 @@ class HamiltonianCircle {
 		V = graph.length;
 		path = new int[V + 1];
 		Arrays.fill(path, -1);
-		circleExist = false;
+		//circleExist = false;
 	}
 
 	void findCircle() {
 		//Jren.p(V);
 		path[0] = 0;
-		if (findCircle(graph, 0, path, 0)) {circleExist = true; return;}
+
+		findCircle(graph, 0, path, 0);
 
 		/*
 		for (int i = 0; i < V; i++) {
@@ -30,20 +31,20 @@ class HamiltonianCircle {
 		*/
 	}
 
-	boolean findCircle(int[][] graph, int curV, int[] path, int curStep) {
+	void findCircle(int[][] graph, int curV, int[] path, int curStep) {
 		//Jren.p(path);
-		if (curStep == V && path[V] == path[0]) return true;
-		if (curStep == V && path[V] != path[0]) return false;
+		if (curStep == V && path[V] == path[0]) {circleExist = true; return;}
+		if (curStep == V && path[V] != path[0]) {circleExist = false; return;}
 
 		for (int v = 0; v < V; v++) {
 			//Jren.p(v);
 			if (graph[curV][v] == 1 && (curStep == V - 1 || notInPath(path, v, curStep))) {
 				path[curStep + 1] = v;
-				if (findCircle(graph, v, path, curStep + 1)) return true;
+				findCircle(graph, v, path, curStep + 1);
+				if (circleExist) return;
 				//path[curStep + 1] = -1;
 			}
 		}
-		return false;
 	}
 
 	void printPath() {
