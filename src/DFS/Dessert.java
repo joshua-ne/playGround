@@ -38,7 +38,7 @@ class Dessert {
 			char curOp = sol[i];
 			int nextNum = i + 1;
 			while ((i + 1) < N && sol[i + 1] == '.') {
-				nextNum = nextNum * 10 + (i + 2);
+				nextNum = nextNum * ((int)Math.pow(10, String.valueOf(i + 2).length())) + (i + 2);
 				i++;
 			}
 
