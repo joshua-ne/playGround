@@ -79,23 +79,6 @@ class Sudoku{
     else Jren.p(solMatrix);
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   public static void main (String[] args){
     Scanner in = new Scanner(new BufferedReader(new InputStreamReader(System.in)));
     int T = in.nextInt();
@@ -115,7 +98,5 @@ class Sudoku{
       sudoku.solve();
       sudoku.print();
     }
-
-
   }
 }
