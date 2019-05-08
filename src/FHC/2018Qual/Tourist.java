@@ -47,7 +47,7 @@ class Tourist {
 
 			List<Attraction> visitList = new ArrayList<>();
 
-			int remainder = (int)(((V - 1) * K) % N);
+			int remainder = (int)((((V - 1) % N) * (K % N)) % N);
 
 			for (int i = 0; i < K; i++) {
 				visitList.add(tourist.attractions.get((i + remainder) % N));
