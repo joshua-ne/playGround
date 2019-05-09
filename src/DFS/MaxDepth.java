@@ -43,8 +43,10 @@ class MaxDepth {
 			TreeNode curNode = curPair.node;
 			int curLevel = curPair.level;
 			
-			depth = Math.max(depth, curLevel); // if (curNode == null) do this? similar to updating res only at null nodes as in topdown method?
-			if (curNode != null) {
+			if (curNode == null ) {
+				depth = Math.max(depth, curLevel);
+			} // if (curNode == null) do this? similar to updating res only at null nodes as in topdown method?
+			else {
 				stack.push(new Pair(curNode.right, curLevel + 1));
 				stack.push(new Pair(curNode.left, curLevel + 1));
 			}
