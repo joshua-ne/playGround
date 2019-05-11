@@ -18,7 +18,10 @@ class Jren {
 	}
 
 	static void p(int[] nums) {
-		System.out.println(Arrays.stream(nums).boxed().collect(Collectors.toList()).toString());
+		for (int i : nums) {
+			System.out.printf("%3d ", i);
+		}
+		p();
 	}
 
 	static void p(char[] chars) {

@@ -88,7 +88,7 @@ class RodCutting {
     int res;
 
     start = System.nanoTime();
-    int length = 20;
+    int length = ;
     RodCutting rc = new RodCutting(prices, length);
     res = rc.solve_recursive(length);
     end = System.nanoTime();

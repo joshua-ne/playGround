@@ -18,7 +18,17 @@ class Jren {
 	}
 
 	static void p(int[] nums) {
-		System.out.println(Arrays.stream(nums).boxed().collect(Collectors.toList()).toString());
+		for (int i : nums) {
+			System.out.printf("%3d ", i);
+		}
+		p();
+	}
+
+	static void p(char[] chars) {
+		for (char c : chars) {
+			System.out.print(String.valueOf(c) + " ");
+		}
+		Jren.p();
 	}
 
 	static void p_index(int[] nums) {
