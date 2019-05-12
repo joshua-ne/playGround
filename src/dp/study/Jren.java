@@ -9,6 +9,10 @@ class Jren {
 		System.out.println(s);
 	}
 
+	static void p(long s) {
+		System.out.println(s);
+	}
+
 	static void p() {
 		System.out.println();
 	}
@@ -19,7 +23,7 @@ class Jren {
 
 	static void p(int[] nums) {
 		for (int i : nums) {
-			System.out.printf("%3d ", i);
+			System.out.printf("%5d ", i);
 		}
 		p();
 	}
@@ -33,7 +37,7 @@ class Jren {
 
 	static void p_index(int[] nums) {
 		for (int i = 0; i < nums.length; i++) {
-			System.out.printf("%3d ", i);
+			System.out.printf("%5d ", i);
 		}
 		p();
 
