@@ -1,3 +1,5 @@
+package dp.study;
+
 import java.util.*;
 
 class RodCutting {
@@ -88,7 +90,7 @@ class RodCutting {
     int res;
 
     start = System.nanoTime();
-    int length = ;
+    int length = 20;
     RodCutting rc = new RodCutting(prices, length);
     res = rc.solve_recursive(length);
     end = System.nanoTime();

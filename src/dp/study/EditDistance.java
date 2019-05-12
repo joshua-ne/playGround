@@ -1,6 +1,8 @@
 class EditDistance {
 
+	EditDistance(String s1, String s2) {
 
+	}
 
 
 
