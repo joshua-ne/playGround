@@ -37,4 +37,4 @@ def edit_distance(a, b):
     return T[len(a)][len(b)]
 
 
-print(edit_distance(a="distance", b="editing"))
+print(edit_distance(a="sitting", b="kitten"))
